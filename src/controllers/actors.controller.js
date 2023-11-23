@@ -26,7 +26,7 @@ export default class actorControllers {
       const response = await axios.request(options);
 
       const status = 200;
-      const message = `List of borm data fetched`;
+      const message = `List of born data fetched`;
       const data = response.data;
       res.json(returnSuccuss(status, message, data));
     } catch (error) {
