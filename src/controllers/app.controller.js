@@ -12,10 +12,11 @@ export default class app {
 
     all = async (req, res) => {
         try {
+            const { q } = req.query;
             const options = {
                 method: 'GET',
                 url: 'https://imdb8.p.rapidapi.com/auto-complete',
-                params: {q: 'game of thr'},
+                params: { q },
                 headers: {
                   'X-RapidAPI-Key': 'e6e52421c6mshed7cee379e02599p1cc843jsn2f5b0853b87f',
                   'X-RapidAPI-Host': 'imdb8.p.rapidapi.com'
@@ -28,6 +29,7 @@ export default class app {
             res.json(returnSuccuss(status, message, data))
         
         } catch (error) {
+            console.log(error)
             const status = 404
             const message = `something went wrong`
             res.json(returnError(status, message))

@@ -4,29 +4,23 @@ import {
   returnError,
 } from "../errorHandlers/APIResponseHandler.js";
 
-const url = process.env.IMDB_ACTORS;
-
-export default class actorControllers {
-  bornApi = async (req, res) => {
+export default class titleController {
+  findApi = async (req, res) => {
     try {
       const options = {
         method: "GET",
-        url: "https://imdb8.p.rapidapi.com/actors/list-born-today",
-        params: {
-          month: "7",
-          day: "27",
-        },
+        url: "https://imdb8.p.rapidapi.com/title/find",
+        params: { q: "game of thr" },
         headers: {
           "X-RapidAPI-Key":
             "e6e52421c6mshed7cee379e02599p1cc843jsn2f5b0853b87f",
           "X-RapidAPI-Host": "imdb8.p.rapidapi.com",
         },
       };
-
       const response = await axios.request(options);
 
       const status = 200;
-      const message = `List of borm data fetched`;
+      const message = `List of titles fetched`;
       const data = response.data;
       res.json(returnSuccuss(status, message, data));
     } catch (error) {
@@ -36,13 +30,13 @@ export default class actorControllers {
     }
   };
 
-  boiApi = async (req, res) => {
+  topCastApi = async (req, res) => {
     try {
       const options = {
         method: "GET",
-        url: "https://imdb8.p.rapidapi.com/actors/get-bio",
+        url: "https://imdb8.p.rapidapi.com/title/get-top-cast",
         params: {
-          nconst: "nm0001667",
+          tconst: "tt0944947",
         },
         headers: {
           "X-RapidAPI-Key":
@@ -50,10 +44,11 @@ export default class actorControllers {
           "X-RapidAPI-Host": "imdb8.p.rapidapi.com",
         },
       };
+
       const response = await axios.request(options);
 
       const status = 200;
-      const message = `List of boi data fetched`;
+      const message = `List of top cast fetched`;
       const data = response.data;
       res.json(returnSuccuss(status, message, data));
     } catch (error) {
@@ -63,13 +58,13 @@ export default class actorControllers {
     }
   };
 
-  imageApi = async (req, res) => {
+  ratingApi = async (req, res) => {
     try {
       const options = {
         method: "GET",
-        url: "https://imdb8.p.rapidapi.com/actors/get-all-images",
+        url: "https://imdb8.p.rapidapi.com/title/get-ratings",
         params: {
-          nconst: "nm0001667",
+          tconst: "tt0944947",
         },
         headers: {
           "X-RapidAPI-Key":
@@ -81,9 +76,10 @@ export default class actorControllers {
       const response = await axios.request(options);
 
       const status = 200;
-      const message = `List of images fetched`;
+      const message = `List of top cast fetched`;
       const data = response.data;
       res.json(returnSuccuss(status, message, data));
+
     } catch (error) {
       const status = 404;
       const message = `Somthing went wrong`;

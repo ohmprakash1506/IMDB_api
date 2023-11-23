@@ -1,6 +1,7 @@
 import { Router } from "express";
 import app from "./app.route.js";
-import actors from './actors.route.js'
+import actors from './actors.route.js';
+import title from './title.route.js'
 
 const router = Router();
 
@@ -12,6 +13,10 @@ const defaultRoute = [
   {
     path: "/actors",
     route: actors
+  },
+  {
+    path: "/title",
+    route:title
   }
 ];
 
